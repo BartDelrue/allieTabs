@@ -3,7 +3,7 @@
 
 ## Documentation
 
-See or documentation page on [bart.cf/allietabs](http://bart.cf/allietabs/).
+See our documentation page on [bart.cf/allietabs](http://bart.cf/allietabs/).
 
 ## Install
 

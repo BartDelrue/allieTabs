@@ -34,6 +34,12 @@
   },
   "homepage": "https://github.com/BartDelrue/allieTabs#readme",
   "dependencies": {
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^3.2.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
@@ -44,11 +50,5 @@
     "eslint-plugin-standard": "^4.0.0",
     "prettier": "^1.15.2",
     "uglify-js": "^3.4.9"
-  },
-  "devDependencies": {
-    "eslint-config-prettier": "^3.2.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1"
   }
 }

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AllieTabs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Accessible tab component"/>
+    <meta property="og:description"
+          content="WCAG 2.0 compliant tabs."/>
+    <meta name="description"
+          content="WCAG 2.0 compliant tabs."/>
+    <link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#23333a">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<div class="container">
+    <main class="content-container">
+        <h1>AllieTabs</h1>
+        <span class="subtitle">A WCAG2.1 compliant tab component</span>
+        <div data-tabs>
+            <ul role="tablist">
+                <li role="presentation">
+                    <a role="tab" href="#template" aria-controls="template">
+                        template
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a role="tab" href="#controls" aria-controls="controls">
+                        controls
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a role="tab" href="#usage" aria-controls="usage">
+                        usage
+                    </a>
+                </li>
+            </ul>
+            <div role="tabpanel" id="template">
+                <h2>Template</h2>
+                <pre><code>&#x3C;div data-tabs&#x3E;
+    &#x3C;ul <em>role=&#x22;tablist&#x22;</em>&#x3E;
+        &#x3C;li <em>role=&#x22;presentation&#x22;</em>&#x3E;
+            &#x3C;a <em>role=&#x22;tab&#x22;</em> href=&#x22;#tab1&#x22; <em>aria-controls=&#x22;tab1&#x22;</em>&#x3E;
+                Tab one
+            &#x3C;/a&#x3E;
+        &#x3C;/li&#x3E;
+    &#x3C;/ul&#x3E;
+    &#x3C;div <em>role=&#x22;tabpanel&#x22;</em> id=&#x22;tab1&#x22;&#x3E;
+        ... content
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;</code></pre>
+                <p>Required attributes are</p>
+                <ul>
+                    <li>
+                        <code>role="tablist" on the UL tag containing the tabs</code>
+                    </li>
+                    <li><code>role="presentation"</code> on the LI elements</li>
+                    <li><code>role=tab</code> on the same page links</li>
+                    <li><code>aria-controls</code> refers to the ID of the corresponding tabpanel</li>
+                    <li><code>role=tabpanel</code> identifies the tabpanel</li>
+                </ul>
+
+                <p>The code will add <code>aria-hidden</code>, <code>aria-selected</code> and <code>tabindex</code>
+                    <br>
+                    but you can also choose to add these yourself to control which panel is opened by default.</p>
+            </div>
+            <div role="tabpanel" id="controls">
+                <h2>controls</h2>
+                <h3>Keyboard controls</h3>
+                <ul>
+                    <li>
+                        <code>Tab</code> - only the active tab is in the tab order. The user reaches the tabbed
+                        panel component by pressing the tab key until the active tab title receives focus.
+                    </li>
+                    <li>
+                        <code>Left Arrow</code> - with focus on a tab, pressing the left arrow will move focus to
+                        the previous tab in the tab list and activate that tab. Pressing the left arrow when the
+                        focus is on the first tab in the tab list will move focus and activate the last tab in the
+                        list.
+                    </li>
+                    <li>
+                        <code>Right Arrow</code> - with focus on a tab, pressing the right arrow will move focus to
+                        the next tab in the tab list and activate that tab. Pressing the right arrow when the focus
+                        is on the last tab in the tab list will move focus to and activate the first tab in the
+                        list.
+                    </li>
+                    <li>
+                        <code>Up arrow</code> - behaves the same as left arrow in order to support vertical tabs
+                    </li>
+                    <li>
+                        <code>Down arrow</code> - behaves the same as right arrow in order to support vertical tabs
+                    </li>
+                    <li>
+                        <code>Home</code> - with focus on a tab, moves the focus to the first tab.
+                    </li>
+                    <li>
+                        <code>End</code> - with focus on a tab, moves the focus to the last tab.
+                    </li>
+                </ul>
+                <h3>URL</h3>
+                <p>You, or the user, can control which tab is opened by default by using the tabpanel id as fragment in
+                    the URL.</p>
+            </div>
+            <div role="tabpanel" id="usage">
+                <h2>
+                    Usage
+                </h2>
+                <h3>Code</h3>
+                <p>
+                    Once your HTML has all required attributes, you can initialise the tabs on two ways.
+                </p>
+                <p><strong>Automatic:</strong> place the <code>data-tabs</code> attribute on the outer wrapper.</p>
+                <p><strong>Manual:</strong> initialise the tabs as follows:</p>
+                <pre><code>allieTabs.init(elem: Element)</code></pre>
+                <h3>Styling</h3>
+                <p>When using the automatic initialisation a class <code>allietabs</code> will be placed on the
+                    outer wrapper when the code has been executed successfully.</p>
+                <p>Using the manual method, you can provide your custom class in the options attribute</p>
+                <pre><code>allieTabs.init(elem: Element, {class: 'my-custom-class'})</code></pre>
+                <h3>
+                    Fallback
+                </h3>
+                <p>Styling based on the added wrapper-class allows for fallback functionality in case something went
+                    wrong or in case javascript is not available.<br>
+                    In which case the tabs will function as standard same page links.</p>
+            </div>
+        </div>
+        <div class="fallback">
+            <h2>Fallback example</h2>
+            <button onclick="allieTabs.init(document.querySelector('#fallback-tabs'), {class: 'allie-tabs'}); this.setAttribute('aria-pressed', 'true'); this.disabled = true;" id="generate">Generate tabs</button>
+            <div id="fallback-tabs">
+                <ul role="tablist">
+                    <li role="presentation">
+                        <a role="tab" href="#template1" aria-controls="template1">
+                            template
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="tab" href="#controls1" aria-controls="controls1">
+                            controls
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="tab" href="#usage1" aria-controls="usage1">
+                            usage
+                        </a>
+                    </li>
+                </ul>
+                <div role="tabpanel" id="template1">
+                    <h3>Template</h3>
+                    <pre><code>&#x3C;div data-tabs&#x3E;
+    &#x3C;ul <em>role=&#x22;tablist&#x22;</em>&#x3E;
+        &#x3C;li <em>role=&#x22;presentation&#x22;</em>&#x3E;
+            &#x3C;a <em>role=&#x22;tab&#x22;</em> href=&#x22;#tab1&#x22; <em>aria-controls=&#x22;tab1&#x22;</em>&#x3E;
+                Tab one
+            &#x3C;/a&#x3E;
+        &#x3C;/li&#x3E;
+    &#x3C;/ul&#x3E;
+    &#x3C;div <em>role=&#x22;tabpanel&#x22;</em> id=&#x22;tab1&#x22;&#x3E;
+        ... content
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;</code></pre>
+                    <p>Required attributes are</p>
+                    <ul>
+                        <li>
+                            <code>role="tablist" on the UL tag containing the tabs</code>
+                        </li>
+                        <li><code>role="presentation"</code> on the LI elements</li>
+                        <li><code>role=tab</code> on the same page links</li>
+                        <li><code>aria-controls</code> refers to the ID of the corresponding tabpanel</li>
+                        <li><code>role=tabpanel</code> identifies the tabpanel</li>
+                    </ul>
+
+                    <p>The code will add <code>aria-hidden</code>, <code>aria-selected</code> and <code>tabindex</code>
+                        <br>
+                        but you can also choose to add these yourself to control which panel is opened by default.</p>
+                </div>
+                <div role="tabpanel" id="controls1">
+                    <h3>controls</h3>
+                    <h4>Keyboard controls</h4>
+                    <ul>
+                        <li>
+                            <code>Tab</code> - only the active tab is in the tab order. The user reaches the tabbed
+                            panel component by pressing the tab key until the active tab title receives focus.
+                        </li>
+                        <li>
+                            <code>Left Arrow</code> - with focus on a tab, pressing the left arrow will move focus to
+                            the previous tab in the tab list and activate that tab. Pressing the left arrow when the
+                            focus is on the first tab in the tab list will move focus and activate the last tab in the
+                            list.
+                        </li>
+                        <li>
+                            <code>Right Arrow</code> - with focus on a tab, pressing the right arrow will move focus to
+                            the next tab in the tab list and activate that tab. Pressing the right arrow when the focus
+                            is on the last tab in the tab list will move focus to and activate the first tab in the
+                            list.
+                        </li>
+                        <li>
+                            <code>Up arrow</code> - behaves the same as left arrow in order to support vertical tabs
+                        </li>
+                        <li>
+                            <code>Down arrow</code> - behaves the same as right arrow in order to support vertical tabs
+                        </li>
+                        <li>
+                            <code>Home</code> - with focus on a tab, moves the focus to the first tab.
+                        </li>
+                        <li>
+                            <code>End</code> - with focus on a tab, moves the focus to the last tab.
+                        </li>
+                    </ul>
+                    <h4>URL</h4>
+                    <p>You, or the user, can control which tab is opened by default by using the tabpanel id as fragment in the URL.</p>
+                </div>
+                <div role="tabpanel" id="usage1">
+                    <h3>
+                        Usage
+                    </h3>
+                    <h4>Code</h4>
+                    <p>
+                        Once your HTML has all required attributes, you can initialise the tabs on two ways.
+                    </p>
+                    <p><strong>Automatic:</strong> place the <code>data-tabs</code> attribute on the outer wrapper.</p>
+                    <p><strong>Manual:</strong> initialise the tabs as follows:</p>
+                    <pre><code>allieTabs.init(elem: Element)</code></pre>
+                    <h4>Styling</h4>
+                    <p>When using the automatic initialisation a class <code>allietabs</code> will be placed on the
+                        outer wrapper when the code has been executed successfully.</p>
+                    <p>Using the manual method, you can provide your custom class in the options attribute</p>
+                    <pre><code>allieTabs.init(elem: Element, {class: 'my-custom-class'})</code></pre>
+                    <h4>
+                        Fallback
+                    </h4>
+                    <p>Styling based on the added wrapper-class allows for fallback functionality in case something went wrong or in case javascript is not available.<br>
+                        In which case the tabs will function as standard same page links.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../dist/allieTabs.min.js"></script>
+</body>
+</html>

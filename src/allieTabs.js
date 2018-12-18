@@ -134,6 +134,7 @@ export const init = (component, options) => {
 
   for (let i = tabpanels.length; i > 0; i--) {
     tabpanels[i - 1].setAttribute('aria-hidden', true);
+    tabpanels[i - 1].setAttribute('tabindex', '-1');
   }
 
   if (hash) {
@@ -149,6 +150,18 @@ export const init = (component, options) => {
   else {
     changeTab(tabs[0], tabs, tabpanels, component, true);
   }
+
+  window.addEventListener('hashchange', function () {
+    const tab = tablist.querySelector('[href="' + window.location.hash + '"]');
+    if (tab) {
+      tab.click();
+    }
+
+    const panel = component.querySelector(window.location.hash);
+    if (panel) {
+      panel.focus();
+    }
+  });
 };
 
 let components = document.querySelectorAll('[data-tabs]');

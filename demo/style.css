@@ -117,6 +117,7 @@ ul[role=tablist] a[role=tab]:hover {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 1rem rgba(0,0,0,0.1);
     border-radius: .2rem;
+    outline: none;
 }
 
 .allie-tabs [role=tabpanel]:first-of-type {

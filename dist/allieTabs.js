@@ -150,6 +150,7 @@
 
     for (var _i2 = tabpanels.length; _i2 > 0; _i2--) {
       tabpanels[_i2 - 1].setAttribute('aria-hidden', true);
+      tabpanels[_i2 - 1].setAttribute('tabindex', '-1');
     }
 
     if (hash) {
@@ -163,6 +164,18 @@
     } else {
       changeTab(tabs[0], tabs, tabpanels, component, true);
     }
+
+    window.addEventListener('hashchange', function () {
+      var tab = tablist.querySelector('[href="' + window.location.hash + '"]');
+      if (tab) {
+        tab.click();
+      }
+
+      var panel = component.querySelector(window.location.hash);
+      if (panel) {
+        panel.focus();
+      }
+    });
   };
 
   var components = document.querySelectorAll('[data-tabs]');

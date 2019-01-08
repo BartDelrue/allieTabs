@@ -82,18 +82,6 @@
       tabs[0].click();
     };
 
-    var setfocus = function setfocus() {
-      var tabpanel = document.querySelector(tab.hash);
-      if (tabpanel && !e.shiftKey) {
-        e.preventDefault();
-        if (window.history && history.replaceState) {
-          history.replaceState(null, null, tab.hash);
-        } else {
-          window.location.hash = tab.hash;
-        }
-      }
-    };
-
     switch (keyCode) {
       case 37:
         previous();
@@ -113,9 +101,6 @@
       case 35:
         end();
         break;
-      case 13:
-        setfocus();
-        break;
     }
   };
 
@@ -126,6 +111,9 @@
     }
 
     options = options || {};
+
+    var changeTab = options.changeTab || changeTab;
+    var handleKeyboardInput = options.handleKeyboardInput || handleKeyboardInput;
 
     var hash = window.location.hash;
     var tablist = component.querySelector('ul[role=tablist]');

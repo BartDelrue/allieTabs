@@ -65,19 +65,6 @@ const handleKeyboardInput = (e, tabs) => {
     tabs[0].click();
   };
 
-  const setfocus = () => {
-    let tabpanel = document.querySelector(tab.hash);
-    if (tabpanel && !e.shiftKey) {
-      e.preventDefault();
-      if (window.history && history.replaceState) {
-        history.replaceState(null, null, tab.hash);
-      }
-      else {
-        window.location.hash = tab.hash;
-      }
-    }
-  };
-
   switch (keyCode) {
     case 37:
       previous();
@@ -97,9 +84,6 @@ const handleKeyboardInput = (e, tabs) => {
     case 35:
       end();
       break;
-    case 13:
-      setfocus();
-      break;
   }
 };
 
@@ -110,6 +94,9 @@ export const init = (component, options) => {
   }
 
   options = options || {};
+
+  let changeTab = options.changeTab || changeTab;
+  let handleKeyboardInput = options.handleKeyboardInput || handleKeyboardInput;
 
   let hash = window.location.hash;
   let tablist = component.querySelector('ul[role=tablist]');

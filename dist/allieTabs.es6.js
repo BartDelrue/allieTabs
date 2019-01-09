@@ -1,4 +1,4 @@
-const changeTab = (tab, tabs, tabpanels, component, init) => {
+const _changeTab = (tab, tabs, tabpanels, component, init) => {
   for (let i = tabs.length; i > 0; i--) {
     tabs[i - 1].setAttribute('aria-selected', false);
     tabs[i - 1].tabIndex = -1;
@@ -26,7 +26,7 @@ const changeTab = (tab, tabs, tabpanels, component, init) => {
   }
 };
 
-const handleKeyboardInput = (e, tabs) => {
+const _handleKeyboardInput = (e, tabs) => {
   const keyCode = e.keyCode || e.which;
   const tab = e.target;
 
@@ -94,8 +94,8 @@ export const init = (component, options) => {
 
   options = options || {};
 
-  let changeTab = options.changeTab || changeTab;
-  let handleKeyboardInput = options.handleKeyboardInput || handleKeyboardInput;
+  let changeTab = options.changeTab || _changeTab;
+  let handleKeyboardInput = options.handleKeyboardInput || _handleKeyboardInput;
 
   let hash = window.location.hash;
   let tablist = component.querySelector('ul[role=tablist]');

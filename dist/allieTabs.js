@@ -16,7 +16,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var changeTab = function changeTab(tab, tabs, tabpanels, component, init) {
+  var _changeTab = function _changeTab(tab, tabs, tabpanels, component, init) {
     for (var i = tabs.length; i > 0; i--) {
       tabs[i - 1].setAttribute('aria-selected', false);
       tabs[i - 1].tabIndex = -1;
@@ -44,7 +44,7 @@
     }
   };
 
-  var handleKeyboardInput = function handleKeyboardInput(e, tabs) {
+  var _handleKeyboardInput = function _handleKeyboardInput(e, tabs) {
     var keyCode = e.keyCode || e.which;
     var tab = e.target;
 
@@ -112,8 +112,8 @@
 
     options = options || {};
 
-    var changeTab = options.changeTab || changeTab;
-    var handleKeyboardInput = options.handleKeyboardInput || handleKeyboardInput;
+    var changeTab = options.changeTab || _changeTab;
+    var handleKeyboardInput = options.handleKeyboardInput || _handleKeyboardInput;
 
     var hash = window.location.hash;
     var tablist = component.querySelector('ul[role=tablist]');

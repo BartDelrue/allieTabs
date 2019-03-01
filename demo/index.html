@@ -123,12 +123,16 @@
                 </p>
                 <p><strong>Automatic:</strong> place the <code>data-tabs</code> attribute on the outer wrapper.</p>
                 <p><strong>Manual:</strong> initialise the tabs as follows:</p>
-                <pre><code>allieTabs.init(elem: Element)</code></pre>
+                <pre><code>@param {Element} elem&NewLine;@param {Object} [options]&NewLine;&NewLine;allieTabs.init(elem, options)</code></pre>
+                <h3>Overrides</h3>
+                <p>You can override the changeTab and handleKeyboardInput functions by providing them in the options object.</p>
+                <p>For instance:</p>
+                <pre><code>allieTabs.init(elem, {handleKeyboardInput: function(e: Event, tabs: Element[]) {})</code></pre>
                 <h3>Styling</h3>
                 <p>When using the automatic initialisation a class <code>allietabs</code> will be placed on the
                     outer wrapper when the code has been executed successfully.</p>
                 <p>Using the manual method, you can provide your custom class in the options attribute</p>
-                <pre><code>allieTabs.init(elem: Element, {class: 'my-custom-class'})</code></pre>
+                <pre><code>allieTabs.init(elem, {class: 'my-custom-class'})</code></pre>
                 <h3>
                     Fallback
                 </h3>
@@ -233,12 +237,16 @@
                     </p>
                     <p><strong>Automatic:</strong> place the <code>data-tabs</code> attribute on the outer wrapper.</p>
                     <p><strong>Manual:</strong> initialise the tabs as follows:</p>
-                    <pre><code>allieTabs.init(elem: Element)</code></pre>
+                    <pre><code>@param {Element} elem&NewLine;@param {Object} [options]&NewLine;&NewLine;allieTabs.init(elem, options)</code></pre>
+                    <h4>Overrides</h4>
+                    <p>You can override the changeTab and handleKeyboardInput functions by providing them in the options object.</p>
+                    <p>For instance:</p>
+                    <pre><code>allieTabs.init(elem, {handleKeyboardInput: function(e: Event, tabs: Element[]) {})</code></pre>
                     <h4>Styling</h4>
                     <p>When using the automatic initialisation a class <code>allietabs</code> will be placed on the
                         outer wrapper when the code has been executed successfully.</p>
                     <p>Using the manual method, you can provide your custom class in the options attribute</p>
-                    <pre><code>allieTabs.init(elem: Element, {class: 'my-custom-class'})</code></pre>
+                    <pre><code>allieTabs.init(elem, {class: 'my-custom-class'})</code></pre>
                     <h4>
                         Fallback
                     </h4>

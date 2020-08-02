@@ -37,7 +37,7 @@ jobs:
         uses: EndBug/add-and-commit@v4.4.0
         with:
           message: "Autocommit builds"
-          path: "dist"
+          add: dist/*.js
           force: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

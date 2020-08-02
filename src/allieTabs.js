@@ -99,8 +99,8 @@ export const init = (component, options) => {
   let handleKeyboardInput = options.handleKeyboardInput || _handleKeyboardInput;
 
   let hash = window.location.hash;
-  let tablist = component.querySelector('ul[role=tablist]');
-  let tabs = tablist.querySelectorAll('li[role=presentation]>a[role=tab]');
+  let tablist = component.querySelector('[role=tablist]');
+  let tabs = tablist.querySelectorAll('[role=tab]');
   let tabpanels = component.querySelectorAll('[role=tabpanel]');
 
   if (options.class) {

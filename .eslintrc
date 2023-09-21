@@ -14,11 +14,12 @@
   },
   "env": {
     "node": true,
-    "es6": true,
+    "es6": true
   },
   "globals": {
     "window": true,
     "document": true,
     "history": true
-  }
+  },
+  "ignorePatterns": ["dist/**/*.js"]
 }

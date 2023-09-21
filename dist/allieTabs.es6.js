@@ -3,18 +3,14 @@ const _changeTab = (tab, tabs, tabpanels, component, init) => {
     tabs[i - 1].setAttribute('aria-selected', false);
     tabs[i - 1].tabIndex = -1;
   }
-
   tab.setAttribute('aria-selected', true);
   tab.tabIndex = 0;
-
   for (let i = tabpanels.length; i > 0; i--) {
     tabpanels[i - 1].setAttribute('aria-hidden', true);
   }
-
   let tabpanel = component.querySelector(tab.hash);
   if (tabpanel) {
     tabpanel.setAttribute('aria-hidden', false);
-
     if (!init) {
       if (window.history && history.replaceState) {
         history.replaceState(null, null, tab.hash);
@@ -25,11 +21,9 @@ const _changeTab = (tab, tabs, tabpanels, component, init) => {
     }
   }
 };
-
 const _handleKeyboardInput = (e, tabs) => {
   const keyCode = e.keyCode || e.which;
   const tab = e.target;
-
   const next = () => {
     for (let i = tabs.length; i > 0; i--) {
       if (tabs[i - 1] === tab) {
@@ -40,7 +34,6 @@ const _handleKeyboardInput = (e, tabs) => {
       }
     }
   };
-
   const previous = () => {
     for (let i = tabs.length; i > 0; i--) {
       if (tabs[i - 1] === tab) {
@@ -51,19 +44,16 @@ const _handleKeyboardInput = (e, tabs) => {
       }
     }
   };
-
   const end = () => {
     e.preventDefault();
     tabs[tabs.length - 1].focus();
     tabs[tabs.length - 1].click();
   };
-
   const home = () => {
     e.preventDefault();
     tabs[0].focus();
     tabs[0].click();
   };
-
   switch (keyCode) {
     case 37:
       previous();
@@ -85,27 +75,20 @@ const _handleKeyboardInput = (e, tabs) => {
       break;
   }
 };
-
 export const init = (component, options) => {
-
   if (!component) {
     return;
   }
-
   options = options || {};
-
   let changeTab = options.changeTab || _changeTab;
   let handleKeyboardInput = options.handleKeyboardInput || _handleKeyboardInput;
-
   let hash = window.location.hash;
   let tablist = component.querySelector('[role=tablist]');
   let tabs = tablist.querySelectorAll('[role=tab]');
   let tabpanels = component.querySelectorAll('[role=tabpanel]');
-
   if (options.class) {
     component.classList.add(options.class);
   }
-
   for (let i = tabs.length; i > 0; i--) {
     tabs[i - 1].setAttribute('aria-selected', false);
     tabs[i - 1].setAttribute('aria-controls', tabs[i - 1].hash.substr(1));
@@ -117,15 +100,12 @@ export const init = (component, options) => {
       handleKeyboardInput(e, tabs);
     });
   }
-
   for (let i = tabpanels.length; i > 0; i--) {
     tabpanels[i - 1].setAttribute('aria-hidden', true);
     tabpanels[i - 1].setAttribute('tabindex', '-1');
   }
-
   if (hash) {
     let tab = tablist.querySelector('[href="' + hash + '"]');
-
     if (tab) {
       tab.click();
     } else {
@@ -134,23 +114,21 @@ export const init = (component, options) => {
   } else {
     changeTab(tabs[0], tabs, tabpanels, component, true);
   }
-
   window.addEventListener('hashchange', function () {
     const tab = tablist.querySelector('[href="' + window.location.hash + '"]');
     if (tab) {
       tab.click();
     }
-
     const panel = component.querySelector(window.location.hash);
     if (panel) {
       panel.focus();
     }
   });
 };
-
 let components = document.querySelectorAll('[data-tabs]');
-
 for (let i = components.length; i > 0; i--) {
-  init(components[i - 1], { class: 'allie-tabs' });
+  init(components[i - 1], {
+    class: 'allie-tabs'
+  });
 }
 
